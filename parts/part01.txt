@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRAMMAR WIZARDS: THE LOST VERBS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&family=Macondo&family=Nunito:wght@600;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'title': ['Cinzel', 'serif'],
+                        'magic': ['Macondo', 'cursive'],
+                        'body': ['Nunito', 'sans-serif'],
+                    },
+                    colors: {
+                        'magic-dark': '#060a12',
+                        'magic-blue': '#0f172a',
+                        'magic-crimson': '#880808',
+                        'magic-gold': '#ffd700',
+                        'magic-gold-dark': '#b8860b',
+                        'magic-green': '#145214',
+                        'magic-parchment': '#fff9e6',
+                        'magic-ink': '#0f0a05',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: #060a12;
+            background-image: 
+                radial-gradient(circle at 50% 20%, #1e1b4b 0%, transparent 60%),
+                radial-gradient(circle at 10% 80%, #311021 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, #064e3b 0%, transparent 50%);
+            background-attachment: fixed;
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            touch-action: manipulation;
+        }
+
+        h1, h2, h3, .title-text { font-family: 'Cinzel', serif; letter-spacing: 1px; }
+        .magic-text { font-family: 'Macondo', cursive; letter-spacing: 1.5px; }
+
+        /* Keyframe Animations */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        .floating { animation: float 3.5s ease-in-out infinite; }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 10px #ffd700, inset 0 0 5px #ffd700; }
+            50% { box-shadow: 0 0 30px #ffd700, inset 0 0 15px #ffd700; }
+            100% { box-shadow: 0 0 10px #ffd700, inset 0 0 5px #ffd700; }
+        }
+        .glow-effect { animation: pulse-glow 2s infinite; }
+
+        @keyframes title-shine {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .shiny-title {
+            background: linear-gradient(90deg, #ffd700, #ffffff, #f59e0b, #ffd700);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: title-shine 4s ease infinite;
+        }
+
+        /* Container & Button Styles */
+        .panel {
+            background: #0d1322;
+            border: 4px solid #ffd700;
+            border-radius: 16px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.9), 0 0 20px rgba(255,215,0,0.25);
+        }
+
+        .welcome-cover {
+            background:
+                radial-gradient(circle at 50% 18%, rgba(255, 223, 118, 0.18) 0%, rgba(255, 223, 118, 0.03) 18%, transparent 32%),
+                radial-gradient(circle at 15% 25%, rgba(110, 72, 170, 0.45) 0%, transparent 30%),
+                radial-gradient(circle at 85% 28%, rgba(17, 94, 89, 0.35) 0%, transparent 28%),
+                linear-gradient(180deg, #1b1534 0%, #100f21 45%, #07080f 100%);
+            border-color: #f6d365;
+            box-shadow: inset 0 0 80px rgba(255,215,0,0.08), 0 20px 55px rgba(0,0,0,0.92), 0 0 28px rgba(255,215,0,0.22);
+        }
+        .welcome-stars {
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle at 8% 20%, rgba(255,255,255,0.95) 0 1px, transparent 2px),
+                radial-gradient(circle at 18% 12%, rgba(255,255,255,0.7) 0 1px, transparent 2px),
+                radial-gradient(circle at 27% 26%, rgba(255,255,255,0.85) 0 1.2px, transparent 2.4px),
+                radial-gradient(circle at 38% 9%, rgba(255,240,170,0.9) 0 1.2px, transparent 2.4px),
+                radial-gradient(circle at 48% 16%, rgba(255,255,255,0.9) 0 1px, transparent 2px),
+                radial-gradient(circle at 58% 8%, rgba(255,255,255,0.7) 0 1.1px, transparent 2.2px),
+                radial-gradient(circle at 66% 19%, rgba(255,240,170,0.85) 0 1.2px, transparent 2.4px),
+                radial-gradient(circle at 76% 14%, rgba(255,255,255,0.95) 0 1px, transparent 2px),
+                radial-gradient(circle at 86% 24%, rgba(255,255,255,0.75) 0 1px, transparent 2px),
+                radial-gradient(circle at 93% 11%, rgba(255,255,255,0.8) 0 1px, transparent 2px);
+            opacity: 0.7;
+            pointer-events: none;
+        }
+        .welcome-moon {
+            position: absolute;
+            top: 46px;
+            right: 64px;
+            width: 112px;
+            height: 112px;
+            border-radius: 9999px;
+            background: radial-gradient(circle at 35% 35%, #fffdf2 0%, #fde68a 48%, #d97706 72%, rgba(217,119,6,0.1) 100%);
+            box-shadow: 0 0 40px rgba(254, 240, 138, 0.35), 0 0 90px rgba(254, 240, 138, 0.15);
+            opacity: 0.95;
+            pointer-events: none;
+        }
+        .welcome-moon::after {
+            content: '';
+            position: absolute;
+            inset: 18px 10px 18px 34px;
+            border-radius: 9999px;
+            background: rgba(27, 21, 52, 0.9);
+        }
+        .welcome-fog {
+            position: absolute;
+            left: -5%;
+            right: -5%;
+            bottom: 88px;
+            height: 120px;
+            background: radial-gradient(circle at 20% 50%, rgba(125, 211, 252, 0.12), transparent 28%),
+                        radial-gradient(circle at 50% 50%, rgba(196, 181, 253, 0.16), transparent 30%),
+                        radial-gradient(circle at 80% 50%, rgba(110, 231, 183, 0.12), transparent 28%);
+            filter: blur(18px);
+            pointer-events: none;
+            opacity: 0.8;
+        }
+        .welcome-castle {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 145px;
+            background: linear-gradient(to top, rgba(5, 8, 16, 1), rgba(5, 8, 16, 0.98) 40%, rgba(5, 8, 16, 0.2) 100%);
+            clip-path: polygon(0% 100%, 0% 62%, 10% 62%, 10% 44%, 14% 44%, 14% 62%, 22% 62%, 22% 34%, 27% 34%, 27% 62%, 34% 62%, 34% 48%, 38% 48%, 38% 62%, 45% 62%, 45% 26%, 50% 18%, 55% 26%, 55% 62%, 63% 62%, 63% 43%, 67% 43%, 67% 62%, 75% 62%, 75% 32%, 80% 32%, 80% 62%, 88% 62%, 88% 46%, 92% 46%, 92% 62%, 100% 62%, 100% 100%);
+            opacity: 0.96;
+            pointer-events: none;
+        }
+        .welcome-castle::before {
+            content: '';
+            position: absolute;
+            left: 8%;
+            right: 8%;
+            bottom: 62px;
+            height: 16px;
+            background: radial-gradient(circle, rgba(255, 214, 102, 0.95) 0 1.8px, transparent 2.8px);
+            background-size: 48px 16px;
+            opacity: 0.75;
+        }
+        .welcome-orb {
+            position: absolute;
+            width: 280px;
+            height: 280px;
+            border-radius: 9999px;
+            top: 118px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.22) 0%, rgba(59, 130, 246, 0.12) 35%, transparent 70%);
+            filter: blur(8px);
+            pointer-events: none;
+        }
+        .welcome-card {
+            background: rgba(2, 6, 23, 0.78);
+            backdrop-filter: blur(8px);
+            border: 2px solid rgba(246, 211, 101, 0.8);
+            box-shadow: 0 14px 28px rgba(0,0,0,0.5), inset 0 0 16px rgba(255,255,255,0.03);
+        }
+        .welcome-tag {
+            background: rgba(127, 29, 29, 0.72);
+            backdrop-filter: blur(5px);
+        }
+
+        .parchment-panel {
+            background: #fff8e7;
+            color: #000000;
+            border: 5px solid #b8860b;
+            border-radius: 16px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.9);
+        }
+
+        .game-btn {
+            background: linear-gradient(to bottom, #991b1b, #450a0a);
+            border: 3px solid #ffd700;
+            border-radius: 10px;
+            box-shadow: 0 5px 0 #2b0404, 0 10px 15px rgba(0,0,0,0.8);
+            transition: all 0.15s ease-in-out;
+            text-transform: uppercase;
+            font-family: 'Cinzel', serif;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px #000000;
+            cursor: pointer;
+        }
+        .game-btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.15);
+            box-shadow: 0 7px 0 #2b0404, 0 12px 20px rgba(255,215,0,0.4);
+        }
+        .game-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 #2b0404, 0 4px 8px rgba(0,0,0,0.8);
+        }
+        .game-btn:disabled {
+            background: #262626 !important;
+            border-color: #525252 !important;
+            box-shadow: none !important;
+            color: #737373 !important;
+            cursor: not-allowed;
+            text-shadow: none !important;
+            transform: none !important;
+        }
+
+        .crystal-slot {
+            width: 44px; height: 44px;
+            background: #000000;
+            border: 2px dashed #ffd700;
+            border-radius: 50%;
+            display: inline-flex; justify-content: center; align-items: center;
+        }
+        .crystal-filled { 
+            border: 2px solid #ffd700; 
+            background: #2e2600; 
+            box-shadow: 0 0 10px #ffd700;
+        }
+
+        /* Realm Map Redesign */
+        .map-board {
+            background:
+                radial-gradient(circle at 50% 48%, rgba(255, 214, 102, 0.22), transparent 40%),
+                radial-gradient(circle at 14% 18%, rgba(34, 197, 94, 0.08), transparent 18%),
+                radial-gradient(circle at 82% 20%, rgba(96, 165, 250, 0.08), transparent 16%),
+                radial-gradient(circle at 78% 72%, rgba(168, 85, 247, 0.08), transparent 18%),
+                linear-gradient(180deg, #f5e9bf 0%, #edd9a1 100%);
+            box-shadow: inset 0 0 0 3px rgba(120, 53, 15, 0.18), inset 0 0 50px rgba(120, 53, 15, 0.15), 0 16px 30px rgba(0,0,0,0.18);
+            overflow: hidden;
+        }
+        .map-compass {
+            position: absolute;
+            top: 16px;
+            right: 18px;
+            width: 84px;
+            height: 84px;
+            border-radius: 9999px;
+            border: 3px solid rgba(120, 53, 15, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(120, 53, 15, 0.85);
+            background: rgba(255,248,220,0.55);
+            box-shadow: inset 0 0 12px rgba(255,255,255,0.5);
+            z-index: 2;
+        }
+        .map-compass::before {
+            content: 'N';
+            position: absolute;
+            top: 4px;
+            font-size: 12px;
+            font-weight: 900;
+        }
+        .map-compass i {
+            font-size: 2rem;
+            transform: rotate(18deg);
+        }
+        .map-terrain-chip {
+            position: absolute;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 10px;
+            border-radius: 999px;
+            background: rgba(120, 53, 15, 0.12);
+            border: 1px solid rgba(120, 53, 15, 0.3);
+            color: rgba(120, 53, 15, 0.92);
+            font-size: 11px;
+            font-weight: 900;
+            z-index: 2;
+        }
+        .map-trail {
+            fill: none;
+            stroke: rgba(146, 64, 14, 0.35);
+            stroke-width: 14;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .map-trail.active {
+            stroke: #b8860b;
+            stroke-width: 6;
+            stroke-dasharray: 12 8;
+            filter: drop-shadow(0 0 4px rgba(255,215,0,0.45));
+            animation: dash 20s linear infinite;
+        }
+        .map-rune {
+            fill: #fbbf24;
+            opacity: 0.85;
+            filter: drop-shadow(0 0 4px rgba(251,191,36,0.55));
+        }
+        .map-landmark {
+            width: 104px;
+            height: 104px;
+            border-radius: 26px;
+            background: linear-gradient(145deg, #1f2937, #0b1120);
+            border: 4px solid #4b5563;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            transition: all 0.32s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: absolute;
+            color: #cbd5e1;
+            box-shadow: 0 14px 26px rgba(0,0,0,0.38), inset 0 2px 10px rgba(255,255,255,0.06);
+            z-index: 10;
+            text-align: center;
+        }
+        .map-landmark::before {
+            content: '';
+            position: absolute;
+            inset: 8px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.08);
+            pointer-events: none;
+        }
+        .map-landmark i {
+            font-size: 2rem;
+        }
+        .map-landmark .node-title {
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .map-stage-badge {
+            position: absolute;
+            top: -12px;
+            right: -10px;
+            min-width: 28px;
+            height: 28px;
+            padding: 0 8px;
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 900;
+            border: 2px solid #fde68a;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.35);
+        }
+        .map-label {
+            position: absolute;
+            padding: 7px 12px;
+            border-radius: 14px;
+            background: rgba(255, 248, 220, 0.92);
+            border: 2px solid rgba(120, 53, 15, 0.65);
+            color: #5b3412;
+            font-size: 12px;
+            font-weight: 900;
+            box-shadow: 0 8px 14px rgba(0,0,0,0.12);
+            z-index: 9;
+            white-space: nowrap;
+        }
+        .map-label.danger {
+            background: rgba(254, 226, 226, 0.95);
+            border-color: rgba(153, 27, 27, 0.8);
+            color: #7f1d1d;
+        }
+        .map-landmark.unlocked {
+            background: linear-gradient(145deg, #7f1d1d, #450a0a);
+            border-color: #ffd700;
+            color: #ffd700;
+            animation: float 3s ease-in-out infinite, pulse-glow 2s infinite;
+        }
+        .map-landmark.unlocked:hover {
+            transform: scale(1.12) translateY(-5px);
+            box-shadow: 0 16px 30px rgba(255, 215, 0, 0.4);
+            z-index: 20;
+        }
+        .map-landmark.completed {
+            background: linear-gradient(145deg, #145214, #06370d);
+            border-color: #86efac;
+            color: #ffffff;
+            box-shadow: 0 0 18px rgba(34, 197, 94, 0.35), 0 14px 26px rgba(0,0,0,0.26);
+        }
+        .map-landmark.completed:hover {
+            transform: scale(1.08);
+        }
+        .map-landmark.locked {
+            cursor: not-allowed;
+            opacity: 0.55;
+            filter: grayscale(0.7);
+        }
+        #node
