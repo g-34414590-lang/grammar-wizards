@@ -1,0 +1,249 @@
+-1 {
+            top: 16%; left: 8%;
+            background: linear-gradient(145deg, #23324d, #0f172a);
+        }
+        #node-2 {
+            top: 11%; left: 35%;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #1f5130, #0b2212);
+        }
+        #node-3 {
+            top: 26%; left: 70%;
+            background: linear-gradient(145deg, #3b2469, #180f2f);
+        }
+        #node-4 {
+            top: 60%; left: 56%;
+            background: linear-gradient(145deg, #5b3518, #2b1608);
+        }
+        #node-5 {
+            top: 63%; left: 15%;
+            background: linear-gradient(145deg, #3a0f16, #120408);
+        }
+
+        /* Timer Bar Styling */
+        .timer-bar-container {
+            width: 100%;
+            height: 12px;
+            background: #111827;
+            border-radius: 9999px;
+            overflow: hidden;
+            border: 2px solid #ffd700;
+        }
+        .timer-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #22c55e, #eab308, #ef4444);
+            transition: width 1s linear;
+        }
+
+        #confetti { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none !important; z-index: 90; display: none; }
+        #screen-reward { position: relative; z-index: 120; pointer-events: auto; }
+        #screen-reward button { position: relative; z-index: 130; pointer-events: auto !important; }
+        
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #060a12; }
+        ::-webkit-scrollbar-thumb { background: #b8860b; border-radius: 5px; }
+    </style>
+</head>
+<body class="flex flex-col items-center p-3 md:p-6 relative">
+
+    <div class="fixed inset-0 pointer-events-none z-[-1]" style="background-image: radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px); background-size: 40px 40px; opacity: 0.3;"></div>
+
+    <svg width="0" height="0" class="hidden">
+        <defs>
+            <!-- Archmage Eldrin SVG Avatar -->
+            <g id="wizard-head">
+                <!-- Wizard Hat Background Shadow -->
+                <ellipse cx="50" cy="82" rx="42" ry="12" fill="#020617" opacity="0.6"/>
+                
+                <!-- Face -->
+                <ellipse cx="50" cy="54" rx="26" ry="28" fill="#fde047" stroke="#854d0e" stroke-width="2"/>
+                
+                <!-- Eyes -->
+                <circle cx="40" cy="48" r="4.5" fill="#0f172a"/>
+                <circle cx="60" cy="48" r="4.5" fill="#0f172a"/>
+                <circle cx="42" cy="46" r="1.5" fill="#FFF"/>
+                <circle cx="62" cy="46" r="1.5" fill="#FFF"/>
+                
+                <!-- Eyebrows -->
+                <path d="M 33 40 Q 40 36 47 41" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+                <path d="M 53 41 Q 60 36 67 40" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+
+                <!-- Smiling Mouth & Nose -->
+                <path d="M 44 58 Q 50 64 56 58" stroke="#854d0e" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                <path d="M 50 49 L 48 53 L 51 53" stroke="#854d0e" stroke-width="2" fill="none"/>
+
+                <!-- Grand Wizard Beard -->
+                <path d="M 26 56 Q 18 85 50 96 Q 82 85 74 56 Q 64 78 50 82 Q 36 78 26 56 Z" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2.5"/>
+                <!-- Mustache -->
+                <path d="M 35 57 Q 50 65 65 57 Q 50 61 35 57 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+
+                <!-- Pointed Wizard Hat Base & Cone -->
+                <path d="M 12 42 Q 50 32 88 42 Q 50 36 12 42 Z" fill="#1e1b4b" stroke="#ffd700" stroke-width="2.5"/>
+                <path d="M 22 39 Q 50 0 50 0 Q 50 0 78 39 Q 50 34 22 39 Z" fill="#312e81" stroke="#ffd700" stroke-width="2.5"/>
+                
+                <!-- Hat Gold Band -->
+                <path d="M 24 37 Q 50 31 76 37 L 74 33 Q 50 28 26 33 Z" fill="#ffd700"/>
+                
+                <!-- Star Emblem on Hat -->
+                <path d="M 50 12 L 52 17 L 57 17 L 53 20 L 55 25 L 50 22 L 45 25 L 47 20 L 43 17 L 48 17 Z" fill="#ffd700"/>
+            </g>
+
+            <!-- Large Magic Potion SVG -->
+            <g id="potion-svg-large">
+                <circle cx="50" cy="60" r="35" fill="#ffd700" opacity="0.35" class="glow-effect"/>
+                <rect x="40" y="8" width="20" height="22" fill="#e2e8f0" opacity="0.8" stroke="#ffd700" stroke-width="3"/>
+                <path d="M 40 30 L 16 68 A 34 34 0 0 0 84 68 L 60 30 Z" fill="url(#potionGradient)" stroke="#ffffff" stroke-width="3.5"/>
+                <rect x="36" y="2" width="28" height="10" fill="#78350f" rx="3" stroke="#ffd700" stroke-width="2"/>
+                <!-- Liquid shine -->
+                <path d="M 28 65 A 18 18 0 0 1 36 48" stroke="#ffffff" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.85"/>
+                <circle cx="50" cy="55" r="4" fill="#ffffff" opacity="0.7"/>
+                <circle cx="42" cy="68" r="3" fill="#ffffff" opacity="0.7"/>
+                <circle cx="58" cy="64" r="5" fill="#ffffff" opacity="0.7"/>
+            </g>
+
+            <linearGradient id="potionGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#f59e0b" />
+                <stop offset="50%" stop-color="#d97706" />
+                <stop offset="100%" stop-color="#78350f" />
+            </linearGradient>
+        </defs>
+    </svg>
+
+    <div id="audio-controls" class="fixed bottom-4 right-4 z-40 flex flex-wrap justify-end gap-2 max-w-[95vw]">
+        <button onclick="toggleMusic()" id="music-btn" class="bg-indigo-950 px-4 py-2 rounded-full border-2 border-magic-gold text-magic-gold hover:bg-black font-bold shadow-lg">
+            <i class="fas fa-music mr-2"></i> Music: ON
+        </button>
+        <button onclick="toggleSound()" id="sound-btn" class="bg-gray-900 px-4 py-2 rounded-full border-2 border-magic-gold text-magic-gold hover:bg-black font-bold shadow-lg">
+            <i class="fas fa-volume-up mr-2"></i> Sound: ON
+        </button>
+    </div>
+
+    <!-- MAIN APP CONTAINER -->
+    <div id="app-container" class="w-full max-w-4xl relative min-h-[85vh] flex flex-col justify-center my-2">
+        
+        <!-- SCREEN: WELCOME / COVER -->
+        <div id="screen-welcome" class="panel welcome-cover p-6 md:p-10 text-center flex flex-col items-center justify-between my-auto relative overflow-hidden">
+            
+            <div class="welcome-stars"></div>
+            <div class="welcome-moon"></div>
+            <div class="welcome-orb"></div>
+            <div class="welcome-fog"></div>
+            <div class="welcome-castle"></div>
+            <div class="absolute -top-12 -left-12 w-40 h-40 bg-yellow-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-12 -right-12 w-40 h-40 bg-red-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="relative z-10 flex items-center gap-2 bg-yellow-900/60 border border-magic-gold px-4 py-1.5 rounded-full text-magic-gold font-bold text-sm tracking-widest uppercase mb-4 shadow">
+                <i class="fas fa-hat-wizard text-lg"></i> SK Seri Kepong English Edition
+            </div>
+
+            <div class="relative z-10 mb-6">
+                <h1 class="text-4xl md:text-6xl font-black shiny-title tracking-wider drop-shadow-[0_5px_15px_rgba(0,0,0,1)]">
+                    GRAMMAR WIZARDS
+                </h1>
+                <div class="text-2xl md:text-4xl text-magic-gold magic-text font-bold mt-1 tracking-widest drop-shadow-md">
+                    ⚡ THE LOST VERBS ⚡
+                </div>
+                <div class="w-48 h-1 bg-gradient-to-r from-transparent via-magic-gold to-transparent mx-auto mt-3"></div>
+            </div>
+
+            <div class="relative z-10 my-2 group">
+                <div class="w-36 h-36 md:w-44 md:h-44 bg-gradient-to-b from-indigo-950 to-slate-950 rounded-full border-4 border-magic-gold flex items-center justify-center shadow-[0_0_30px_rgba(255,215,0,0.4)] floating">
+                    <svg width="130" height="130" viewBox="0 0 100 100" class="drop-shadow-lg"><use href="#wizard-head"/></svg>
+                </div>
+                <div class="absolute -bottom-2 welcome-tag border-2 border-magic-gold px-4 py-1 rounded-full text-white font-black text-xs uppercase tracking-widest shadow-lg">
+                    Archmage Eldrin's Academy
+                </div>
+            </div>
+
+            <div class="relative z-10 w-full max-w-lg welcome-card p-5 rounded-2xl my-6 text-left space-y-4">
+                <div>
+                    <label class="block font-bold mb-1 text-magic-gold text-sm tracking-wider uppercase"><i class="fas fa-user-shield mr-1"></i> Wizard's Name:</label>
+                    <input type="text" id="player-name" class="w-full p-3 rounded-xl text-black font-extrabold text-lg border-2 border-magic-gold bg-amber-50 focus:outline-none focus:ring-4 focus:ring-yellow-400" placeholder="e.g. Master Adam">
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold mb-1 text-magic-gold text-sm tracking-wider uppercase"><i class="fas fa-house-chimney-window mr-1"></i> Class House:</label>
+                        <select id="player-class" class="w-full p-3 rounded-xl text-black font-bold text-base border-2 border-magic-gold bg-amber-50 focus:outline-none">
+                            <option value="4 Arif">4 Arif</option>
+                            <option value="5 Arif">5 Arif</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-bold mb-1 text-magic-gold text-sm tracking-wider uppercase"><i class="fas fa-wand-magic-sparkles mr-1"></i> Magic Tier:</label>
+                        <select id="player-difficulty" class="w-full p-3 rounded-xl text-black font-bold text-base border-2 border-magic-gold bg-amber-50 focus:outline-none">
+                            <option value="Explorer">Apprentice (Easy)</option>
+                            <option value="Adventurer" selected>Wizard (Medium)</option>
+                            <option value="Time Master">Grand Wizard (Hard)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative z-10 flex flex-col sm:flex-row gap-4 w-full max-w-lg justify-center">
+                <button onclick="startGame()" class="game-btn flex-1 py-4 text-2xl flex items-center justify-center gap-3">
+                    <i class="fas fa-play text-xl"></i> Begin Quest
+                </button>
+                <button onclick="showModal('how-to-play')" class="game-btn py-4 px-6 text-xl flex items-center justify-center gap-2" style="background: linear-gradient(to bottom, #1e3a8a, #0f172a); border-color: #93c5fd; color: #f0f9ff;">
+                    <i class="fas fa-book-bookmark"></i> Spellbook
+                </button>
+            </div>
+
+            <button onclick="showDashboard()" class="relative z-10 mt-6 text-yellow-300 hover:text-yellow-200 underline font-bold text-sm tracking-wide transition">
+                <i class="fas fa-clipboard-list mr-1"></i> Headmaster's Records & Stats
+            </button>
+        </div>
+
+        <!-- SCREEN: STORY INTRO -->
+        <div id="screen-intro" class="hidden panel p-8 flex flex-col items-center justify-center text-center my-auto">
+            <div class="inline-block bg-red-950 text-red-400 font-extrabold px-6 py-2 rounded-full border border-red-500 mb-4 animate-pulse">
+                ⚠️ CRITICAL GRAMMAR EMERGENCY
+            </div>
+            <h2 class="text-4xl md:text-5xl text-red-500 mb-6 title-text font-black drop-shadow-[0_0_15px_rgba(255,0,0,0.8)]">DARK MAGIC DETECTED!</h2>
+            
+            <div class="bg-slate-950 p-6 rounded-2xl border-2 border-red-700 mb-8 max-w-2xl text-lg md:text-xl leading-relaxed text-gray-100 shadow-2xl">
+                <p class="font-bold text-yellow-300">A Dark Sorcerer has erased past-tense verbs from yesterday's history books!</p>
+                <p class="mt-4">Without past verbs like <span class="text-red-400 font-mono bg-black px-2 py-0.5 rounded border border-red-800">went</span>, <span class="text-red-400 font-mono bg-black px-2 py-0.5 rounded border border-red-800">bought</span>, and <span class="text-red-400 font-mono bg-black px-2 py-0.5 rounded border border-red-800">cooked</span>, time itself is collapsing!</p>
+                <p class="mt-4 text-magic-gold font-black">Answer each question within 10 seconds! Conquer all 5 realms, earn 5 Potions of Time, and defeat the Sorcerer!</p>
+            </div>
+
+            <button onclick="showMap()" class="game-btn px-10 py-5 text-2xl flex items-center gap-3">
+                <i class="fas fa-compass"></i> Enter the Grounds
+            </button>
+        </div>
+
+        <!-- HUD -->
+        <div id="hud" class="hidden w-full bg-slate-950 border-4 border-magic-gold p-3 rounded-2xl flex flex-wrap justify-between items-center mb-4 shadow-2xl z-40">
+            <div class="flex items-center gap-4">
+                <div class="font-black text-lg text-yellow-300"><i class="fas fa-user-astronaut text-magic-gold"></i> <span id="hud-name">Wizard</span></div>
+                <div class="font-black text-magic-gold text-lg bg-black px-3 py-1 rounded-lg border border-yellow-600"><i class="fas fa-star text-yellow-400"></i> <span id="hud-score">0</span> pts</div>
+                <div id="hud-hearts" class="text-red-500 text-xl flex gap-1">
+                    <i class="fas fa-heart"></i><i class="fas fa-heart"></i><i class="fas fa-heart"></i>
+                </div>
+            </div>
+            <div class="flex gap-2" id="hud-crystals">
+                <div class="crystal-slot" id="c-1"></div>
+                <div class="crystal-slot" id="c-2"></div>
+                <div class="crystal-slot" id="c-3"></div>
+                <div class="crystal-slot" id="c-4"></div>
+                <div class="crystal-slot" id="c-5"></div>
+            </div>
+            <button type="button" onclick="goHomeConfirm(event)" class="relative z-[60] bg-red-900 p-2.5 rounded-xl text-white hover:bg-red-700 border-2 border-magic-gold font-bold" title="Return to Home">
+                <i class="fas fa-house"></i>
+            </button>
+        </div>
+
+        <!-- SCREEN: MAP -->
+        <div id="screen-map" class="hidden parchment-panel p-6 flex-grow relative overflow-hidden flex flex-col items-center">
+            <h2 class="text-3xl md:text-4xl text-black font-black title-text border-b-4 border-amber-900 pb-2 mb-1">The Realm Map</h2>
+            <p class="text-amber-950 font-black text-center mb-3">Conquer each realm landmark to stop the Dark Sorcerer!</p>
+
+            <div class="map-board relative w-full max-w-2xl h-[500px] my-auto rounded-2xl border-4 border-amber-900/60 p-4 shadow-inner">
+                <div class="map-compass"><i class="fas fa-compass"></i></div>
+                <div class="map-terrain-chip" style="top: 14px; left: 18px;"><i class="fas fa-sparkles"></i> Moonlit Route</div>
+                <div class="map-terrain-chip" style="bottom: 18px; right: 18px;"><i class="fas fa-wand-sparkles"></i> Potion Trail</div>
+                <div class="map-terrain-chip" style="bottom: 20px; left: 26px;"><i class="fas fa-mountain"></i> Shadow Cliffs</div>
+
+                <svg class="absolute inset-0 w-full h-full pointer-events-none z-0" viewBox="0 0 760 500" preserveAspectRatio="none">
+                    <path d="M 110 130 C 180 72, 268 72, 332 120 S 470 205, 562 188 S 650 300, 602 355 S 415 417, 250 385" class="map-trail"></path>
+                    <path d="M 110 130 C 180 72, 268 72, 332 120 S 470 205, 562 188 S 650 300, 602 355 S 415 417, 250 385" class="map-trai
